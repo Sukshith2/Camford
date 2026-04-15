@@ -59,6 +59,7 @@
       <div class="hero-top">
         <!-- LEFT TEXT -->
         <div class="hero-left">
+          <div class="badge">Secure Your Spot Today!</div>
           <h1>Where Inspired Learning Meets World-Class Education</h1>
           <p class="sub">
             Coimbatore's leading CBSE school, nurturing leaders, critical
@@ -68,10 +69,11 @@
 
         <!-- RIGHT FORM -->
         <div class="hero-right">
+          
           <div class="form-card">
             <div class="form-wrap">
               <h2>Admission Enquiry</h2>
-
+          <form method="post" id="form">
               <div class="row">
                 <div class="field" id="f-student">
                   <input type="text" id="student" name="Student Name" placeholder="Student Name" />
@@ -195,14 +197,15 @@
                 </div>
               </div>
 
-              <button class="primary-btn cta-btn" type="button" onclick="submitForm()">
+              <button class="primary-btn cta-btn" type="submit">
                 Enquire Now
               </button>
               <div class="success-msg" id="success-msg">
                 Thank you! We'll get in touch with you soon.
               </div>
+            </form>
             </div>
-          </div>
+          </div>          
         </div>
       </div>
       <!-- /hero-top -->
@@ -1115,6 +1118,16 @@
       </div>
     </div>
     <!-- last section stop from here -->
+<footer class="footer_main">
+    <p>© 2026 Camford International School. All rights reserved.</p>
+  </footer>
+
+    <div class="floating-contact" bis_skin_checked="1">
+      <ul class="ulbtnn">
+        <li><a href="tel:+919686677317" class="call">Call Now</a></li>
+        <li><a id="EnquiryNow" class="enquiry open-popup">Enquire Now</a></li>
+      </ul>
+    </div>
 
     <script>
       $(document).ready(function () {
@@ -1252,94 +1265,115 @@
         });
       });
     </script>
+<script>
+let captchaDone = false;
 
-      <script>
-  var SHEET_URL = "https://script.google.com/macros/s/AKfycbxg2W8FPfWyvf6I4d1n5kySqYolpPkxOytlhzEHZFYgtMHiRtMGNUKYI06PeiBxCcyE/exec";
-  var captchaDone = false;
+// Toggle Captcha
+function toggleCaptcha() {
+  const box = document.getElementById("captcha-check");
+  box.classList.toggle("checked");
+  captchaDone = box.classList.contains("checked");
+}
 
-  // Toggle captcha
-  function toggleCaptcha() {
-    captchaDone = !captchaDone;
-    document.getElementById('captcha-check').classList.toggle('checked', captchaDone);
+// Show Error
+function showError(fieldId) {
+  document.getElementById(fieldId).classList.add("has-error");
+}
+
+// Remove Error
+function removeError(fieldId) {
+  document.getElementById(fieldId).classList.remove("has-error");
+}
+
+// Validation Function
+function validateForm() {
+  let isValid = true;
+
+  const student = document.getElementById("student").value.trim();
+  const parent = document.getElementById("parent").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const grade = document.getElementById("grade").value;
+
+  // Student Name
+  if (student === "") {
+    showError("f-student");
+    isValid = false;
+  } else removeError("f-student");
+
+  // Parent Name
+  if (parent === "") {
+    showError("f-parent");
+    isValid = false;
+  } else removeError("f-parent");
+
+  // Email
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    showError("f-email");
+    isValid = false;
+  } else removeError("f-email");
+
+  // Phone
+  const phonePattern = /^[0-9]{10}$/;
+  if (!phonePattern.test(phone)) {
+    showError("f-phone");
+    isValid = false;
+  } else removeError("f-phone");
+
+  // Grade
+  if (grade === "") {
+    showError("f-grade");
+    isValid = false;
+  } else removeError("f-grade");
+
+  // Captcha
+  if (!captchaDone) {
+    alert("Please verify captcha");
+    isValid = false;
   }
 
-  // Error handling
-  function setError(id, show) {
-    var el = document.getElementById('f-' + id);
-    if (!el) return;
-    el.classList.toggle('has-error', show);
-  }
+  return isValid;
+}
+</script>
 
-  // Submit form
-  function submitForm() {
 
-    var student = document.getElementById('student').value.trim();
-    var parent = document.getElementById('parent').value.trim();
-    var email = document.getElementById('email').value.trim();
-    var phone = document.getElementById('phone').value.trim();
-    var grade = document.getElementById('grade').value;
+ <script>
+const form = document.querySelector("#form");
 
-    var iamEl = document.querySelector('input[name="iam"]:checked');
-    var iam = iamEl ? iamEl.value : "";
+const scriptURL = "https://script.google.com/macros/s/AKfycbz49NJigVdY_E3phitPE7ayBbA59fq2DVDRpXt4ZDaQ1OFjBMvC9wOX5mvcsYnrp3ls/exec";
 
-    // Validation
-    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    var phoneOk = /^\d{10}$/.test(phone);
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
 
-    var e1 = !student;
-    var e2 = !parent;
-    var e3 = !emailOk;
-    var e4 = !phoneOk;
-    var e5 = !grade;
+  // 🔥 Validate first  
+  if (!validateForm()) return;
 
-    setError('student', e1);
-    setError('parent', e2);
-    setError('email', e3);
-    setError('phone', e4);
-    setError('grade', e5);
+  const formData = new FormData(form);
 
-    if (e1 || e2 || e3 || e4 || e5) return;
-
-    if (!captchaDone) {
-      alert("Please confirm you are not a robot.");
-      return;
-    }
-
-    var btn = document.querySelector('.cta-btn');
-    btn.textContent = "Submitting...";
-    btn.disabled = true;
-
-    fetch(SHEET_URL, {
-      method: "POST",
-      mode: "cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        studentName: student,
-        parentName: parent,
-        iAm: iam,
-        email: email,
-        phone: phone,
-        grade: grade
-      })
-    })
-    .then(res => res.text())
+  fetch(scriptURL, {
+    method: "POST",
+    body: formData,
+    mode: "no-cors"
+  })
     .then(() => {
-      document.getElementById('success-msg').style.display = 'block';
+      alert("Success!");
 
       // Reset form
-      document.querySelectorAll('input, select').forEach(el => el.value = "");
-      captchaDone = false;
-      document.getElementById('captcha-check').classList.remove('checked');
+      form.reset();
 
-      btn.textContent = "Enquire Now";
-      btn.disabled = false;
+      // Reset captcha
+      document.getElementById("captcha-check").classList.remove("checked");
+      captchaDone = false;
+
+      // Show success message
+      document.getElementById("success-msg").style.display = "block";
     })
-    .catch(() => {
-      alert("Submission failed. Try again.");
-      btn.textContent = "Enquire Now";
-      btn.disabled = false;
+    .catch((error) => {
+      alert("Error! " + error.message);
     });
-  }
-  </script>
-  </body>
+});
+</script> 
+
+</body>
 </html>

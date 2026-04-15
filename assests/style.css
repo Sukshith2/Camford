@@ -907,7 +907,59 @@ button#nextBtn {
 }
 
 /* classroom section start from here  */
-
+.footer_main {
+    padding: 20px 0px;
+    text-align: center;
+    
+}
+.footer_main{
+  font-weight: 300;
+}
+ul.ulbtnn {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.floating-contact {
+    position: fixed;
+    right: 0;
+    top: 30%;
+    z-index: 999;
+    display: block;
+}
+.badge {
+    display: inline-block;
+   border: 1.5px solid #2CACDA;
+    color: #ffff;
+    background-color: #2CACDA;
+    font-size: 26px;
+    font-weight: 500;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 18px;
+    width: 70%;
+    font-family: var(--font-primary);
+    text-align: center;
+}
+.ulbtnn a {
+    display: block;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-decoration: none;
+    color: #ffffff;
+    padding: 15px 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    background: #2CACDA;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.ulbtnn a.call {
+    display: none;
+}
+.ulbtnn a {
+    cursor: pointer;
+}
 /* form start here  */
 .form-wrap {
   background: linear-gradient(#297995, #004b7d);
@@ -1133,7 +1185,16 @@ button#nextBtn {
 /* form start here  */
 
 /* Responsive: */
+@media (max-width: 1500px) {
+  .badge{
+        width: 75%;
+  }
+}
 @media (max-width: 1300px) {
+      .badge {
+        width: 80%;
+      }
+
   .hero-left h1 {
     font-size: 42px;
   }
@@ -1234,6 +1295,44 @@ button#nextBtn {
   }
 }
 @media (max-width: 767px) {
+      .badge {
+        width: 100%;
+    }
+      .enquiry.open-popup {
+        display: block;
+  background: #D8EFF7;
+        color: #306D98;
+    }
+        .ulbtnn a {
+        writing-mode: horizontal-tb;
+        transform: none;
+        text-align: center;
+        padding: 14px;
+        font-size: 14px;
+        display: block;
+        border-radius: 0px;
+    }
+      .floating-contact {
+        bottom: 0;
+        top: auto;
+        right: 0;
+        width: 100%;
+    }
+        .ulbtnn {
+        display: flex;
+    }
+    .ulbtnn {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+    .ulbtnn li {
+        flex: 1;
+        margin: 0;
+    }
+        .ulbtnn a.call {
+        display: block;
+    }
   .hero-left h1 {
     font-size: 30px;
     text-align: center;
