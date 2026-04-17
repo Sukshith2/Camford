@@ -58,7 +58,7 @@ p {
 
 .sections-title {
   font-family: var(--font-primary);
-  font-size: 32px;
+  font-size: 36px;
   color: var(--secondary-color);
   font-weight: 500;
   text-align: center;
@@ -76,6 +76,7 @@ p {
   border-radius: 6px;
   text-decoration: none;
   font-size: 20px;
+    cursor: pointer;
 }
 
 /* header section start from here  */
@@ -290,7 +291,7 @@ section.camford-section h2 {
 }
 
 .step {
-  flex: 30%;
+  flex: 0 0 12%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -333,6 +334,9 @@ section.camford-section h2 {
 /* secton achivemtnt start here  */
 
 /* ── Header ──────────────────────────────────── */
+.mobile-form {
+    display: none;
+}
 section.achievements-section {
   text-align: center;
   background-image: url(../images/backgrond-achivements.png);
@@ -401,8 +405,8 @@ section.achievements-section p {
 
 .card-achievement {
   font-family: var(--font-primary);
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   color: #297995;
   line-height: 1.5;
 }
@@ -464,9 +468,8 @@ section.achievements-section p {
 }
 
 .ac-img-wrap {
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
+  width: 80%;
+    border-radius: 50%;
   overflow: hidden;
   margin-bottom: 24px;
   border: 4px solid #b8d6f0;
@@ -507,7 +510,7 @@ section.achievements-section p {
 .ac-desc {
   font-size: 18px;
   color: #4c5055;
-  line-height: 1.7;
+  line-height: 28px;
 }
 
 /* Horizontal rule accent behind images */
@@ -743,6 +746,7 @@ section.testimonial-section {
   font-family: var(--font-primary);
   margin-bottom: 18px;
   flex: 1;
+  font-family: 400;
 }
 
 /* Short preview — always visible */
@@ -813,7 +817,7 @@ section.testimonial-section {
 .advantage-section {
   display: flex;
   margin-top: 5%;
-  padding: 70px;
+  padding: 70px 0px 70px 70px;
   background-color: #004b7d;
 }
 
@@ -888,6 +892,7 @@ button#nextBtn {
   overflow: hidden;
   height: 395px;
   justify-content: space-between;
+      width: 100%;
 }
 
 .card-title {
@@ -928,16 +933,16 @@ ul.ulbtnn {
     display: block;
 }
 .badge {
-    display: inline-block;
-   border: 1.5px solid #2CACDA;
+ display: inline-block;
+    border: 1.5px solid #2CACDA;
     color: #ffff;
     background-color: #2CACDA;
-    font-size: 26px;
+    font-size: 23px;
     font-weight: 500;
-    padding: 10px 14px;
+    padding: 8px 14px;
     border-radius: 6px;
     margin-bottom: 18px;
-    width: 70%;
+    width: 65%;
     font-family: var(--font-primary);
     text-align: center;
 }
@@ -974,6 +979,7 @@ ul.ulbtnn {
   text-align: center;
   margin-bottom: 28px;
   letter-spacing: 0.3px;
+  font-weight: 500;
 }
 
 .row {
@@ -1015,6 +1021,7 @@ ul.ulbtnn {
   color: #ffff;
   font-family: var(--font-primary);
   padding-bottom: 20px;
+  font-weight: 500;
 }
 
 .field select option {
@@ -1293,10 +1300,33 @@ ul.ulbtnn {
   .hero-left .sub {
     width: 100%;
   }
+  .mobile-form{
+    display: block;
+  }
 }
 @media (max-width: 767px) {
+  .advantage-card{
+    margin: 0;
+  }
+  img.call_icom{
+    width: 13px;
+    margin-right: 8px;
+  }
+  .left-nav{
+    margin: 15px 0;
+  }
+  .footer_main{
+        margin-bottom: 35px;
+    font-size: 12px;
+  }
       .badge {
         width: 100%;
+        margin: 0;
+            font-size: 20px;
+    }
+    .hero-left .sub{
+          font-size: 13px;
+          text-align: center;
     }
       .enquiry.open-popup {
         display: block;
@@ -1333,10 +1363,10 @@ ul.ulbtnn {
         .ulbtnn a.call {
         display: block;
     }
-  .hero-left h1 {
-    font-size: 30px;
-    text-align: center;
-  }
+     .hero-left h1 {
+        font-size: 25px;
+        text-align: center;
+    }
   .camford-grid {
     display: flex;
     flex-wrap: wrap;

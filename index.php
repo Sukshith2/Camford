@@ -82,13 +82,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="form-card">
             <div class="form-wrap contactForm">
               <h2>Admission Enquiry</h2>
-              <form method="post" class="form">
+              <form method="post" class="form" action="gsheetinsert.php">
                 <div class="row">
                   <div class="field" id="f-student">
                     <input
                       type="text"
                       id="student"
-                      name="Student Name"
+                      name="student"
+					  required
                       placeholder="Student Name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '')"
                     />
                     <span class="err-msg">Student name is required</span>
@@ -98,8 +99,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       type="text"
                       id="parent"
                       placeholder="Parent / Guardian Name"
-                      name="Parent Name"
+                      name="parent"
                       oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '')"
+					  required
                     />
                     <span class="err-msg"
                       >Parent/guardian name is required</span
@@ -127,9 +129,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <div class="field full" id="f-email">
                     <input
                       type="email"
-                      name="Email"
+                      name="email"
                       id="email"
                       placeholder="Your Email*"
+					  required
                     />
                     <span class="err-msg">A valid email is required</span>
                   </div>
@@ -147,10 +150,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <div class="field phone-num" id="f-phone">
                     <input
                       type="tel"
-                      name="Phone Number"
+                      name="phone"
                       id="phone"
                       maxlength="10"
                       placeholder="Phone Number *" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+					  required
                     />
                     <span class="err-msg">Valid 10-digit number required</span>
                   </div>
@@ -158,7 +162,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 <div class="row">
                   <div class="field full" id="f-grade">
-                    <select name="Grade" id="grade">
+                    <select name="grade" id="grade" required>
                       <option value="">Select Grade *</option>
                       <option>Mont I</option>
                       <option>Mont II</option>
@@ -179,12 +183,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   </div>
                 </div>
 
-                <input type="hidden" name="utm_source" id="utm_source">
-<input type="hidden" name="utm_campaign" id="utm_campaign">
-<input type="hidden" name="utm_adgroup" id="utm_adgroup">
-<input type="hidden" name="utm_keyword" id="utm_keyword">
-<input type="hidden" name="utm_medium" id="utm_medium">
-<input type="hidden" name="utm_content" id="utm_content">
+<input name="utm_source" type="hidden" name="utm_source" value="<?php echo $_GET['utm_source']; ?>"> 
+<input name="utm_campaign" type="hidden" name="utm_campaign" value="<?php echo $_GET['utm_campaign']; ?>"> 
+<input name="utm_medium" type="hidden" name="utm_medium" value="<?php echo $_GET['utm_medium']; ?>"> 
+<input name="utm_term" type="hidden" name="utm_term" value="<?php echo $_GET['utm_term']; ?>">
+<input name="utm_content" type="hidden" name="utm_content" value="<?php echo $_GET['utm_content']; ?>">
+<input name="utm_keyword" type="hidden" name="utm_keyword" value="<?php echo $_GET['utm_keyword']; ?>">
+<input name="utm_adgroup" type="hidden" name="utm_adgroup" value="<?php echo $_GET['utm_adgroup']; ?>">
 
                <div class="captcha-box">
                   <div class="g-recaptcha" data-sitekey="6LfD_7ksAAAAALHnUhTgWYC5s6-B5UKGWxEeWKoe"></div>
@@ -551,20 +556,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- infra 4 (extra demo) -->
         <div class="infrastruc-card">
           <div class="infra-img-wrap">
-            <img src="images/infra23.webp" alt="Priya Sharma" />
-          </div>
-          <div class="infra-body">
-            <div class="infra-name">Priya Sharma</div>
-          </div>
-        </div>
-        <div class="infrastruc-card">
-          <div class="infra-img-wrap">
-            <img src="images/infra1.webp" alt="Priya Sharma" />
+            <img src="images/infra23.webp" alt="Sports" />
           </div>
           <div class="infra-body">
             <div class="infra-name">Sports</div>
           </div>
         </div>
+       
         <div class="infrastruc-card">
           <div class="infra-img-wrap">
             <img src="images/infra233.webp" alt="Priya Sharma" />
@@ -1312,72 +1310,8 @@ if (typeof grecaptcha !== "undefined") {
 }
     </script>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const params = new URLSearchParams(window.location.search);
 
-  const keys = [
-    "utm_source",
-    "utm_campaign",
-    "utm_adgroup",
-    "utm_keyword",
-    "utm_medium",
-    "utm_content"
-  ];
 
-  keys.forEach(key => {
-    let value = params.get(key) || localStorage.getItem(key) || "";
-
-    if (value) {
-      localStorage.setItem(key, value);
-    }
-
-    const field = document.querySelector(`[name="${key}"]`);
-    if (field) {
-      field.value = value;
-    }
-  });
-});
-</script>
-
-<script>
-const forms = document.querySelectorAll("form.form");
-
-// const scriptURL = "https://script.google.com/macros/s/AKfycbwOVdIoQHsvIylus3meVrwW1naKJbreugjwuhmjZ_LYZFcNI_Us1FO8XB9kDCBDzZzM/exec";
-const scriptURL = "https://script.google.com/macros/s/AKfycbw9E9e_xhR3op06BUPCYYKu8q5p5rYDgxNr2CMqXYbjyKdWDzhDgHBSWjWZe35oDkpJTQ/exec"
-forms.forEach((form) => {
-  const submitButton = form.querySelector(".submit");
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    if (!validateForm(form)) return;
-
-    submitButton.disabled = true;
-
-    let requestBody = new FormData(form);
-      console.log([...requestBody.entries()]);
-
-    fetch(scriptURL, {
-      method: "POST",
-      body: requestBody
-    })
-      .then((response) => {
-        form.reset();
-
-        if (typeof grecaptcha !== "undefined") {
-          grecaptcha.reset();
-        }
-
-        // window.location.href = "https://thecamford.org/applications-demo/thank-you.html";
-      })
-      .catch((error) => {
-        alert("Error: " + error.message);
-        submitButton.disabled = false;
-      });
-  });
-});
-</script>
 <!-- 
     <script>
 const forms = document.querySelectorAll("form.form");
@@ -1447,6 +1381,19 @@ $(document).on("click", "#EnquiryNow", function(e) {
 
 });
 </script>
+<script>
+document.querySelector(".form").addEventListener("submit", function(e) {
+
+  var response = grecaptcha.getResponse();
+
+  if(response.length === 0) {
+    e.preventDefault(); // stop form submit
+    alert("Please verify that you are not a robot.");
+    return false;
+  }
+
+});
+</script>
 
 
 <style>
@@ -1501,6 +1448,10 @@ $(document).on("click", "#EnquiryNow", function(e) {
     }
     .captcha-box{
           width: 45%;
+    }
+	    .hero {
+        background-image: url(images/lpbnr--mobile.png) !important;
+        background-position: center;
     }
 
 }
